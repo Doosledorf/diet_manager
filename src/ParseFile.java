@@ -21,7 +21,7 @@ public class ParseFile {
     FileInputStream fis = null;
     BufferedInputStream bis = null;
     DataInputStream dis = null;
-    List<List<String>> itemList;
+    List<String> parsedList;
     
     public ParseFile(String fileName){
         
@@ -29,11 +29,11 @@ public class ParseFile {
         
     }
     
-    public List<List<String>> openFile(){
+    public List<String> openFile(){
         
         try{
             csv = new File(fileName);
-            itemList = new ArrayList<>();
+
             
             fis = new FileInputStream(csv);
             bis = new BufferedInputStream(fis);
@@ -42,10 +42,9 @@ public class ParseFile {
             while (dis.available() != 0){
                 
                 String currentLine = dis.readLine();
-                List<String> parsedList = Arrays.asList(currentLine.split(","));
-                
-                itemList.add(parsedList);
-                System.out.println(parsedList);
+                parsedList = Arrays.asList(currentLine.split(","));
+                CreateLogObject clo = new CreateLogObject(parsedList);
+                clo.setDate();
                 
             }
             
@@ -56,9 +55,7 @@ public class ParseFile {
         catch(IOException ioe){
             ioe.printStackTrace();
         }
-        System.out.println(itemList);
-        return(itemList);
-        
+        return(parsedList);
     }
     
 }
