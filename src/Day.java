@@ -1,27 +1,32 @@
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
+
 public class Day{
    
    //Attributes
    double weight, calorieGoal;
-   Map<String, double> foodEaten; //Food, Count 
+   Map<String, Double> foodEaten; //Food, Count 
    
    //Default Constructor. No previous date.
    public Day(){
       
       weight = 150.0;
-      calorieGoal = 2000.0 
-      foodEaten = new HashMap<String, double>();
+      calorieGoal = 2000.0;
+      foodEaten = new HashMap<>();
    }
    
    //Perhaps another constructor here, Needs testing.
    
    //Accessors. Might be a little too toolboxy...
    public double getWeight(){ return weight; }
-   public double getGoal(){ return calorieCoal; }
+   public double getGoal(){ return calorieGoal; }
    
    //Gets entire list of food eaten that day
    public List<String> getFoodList(){
    
-      List<String> foodList = new ArrayList<String>(); 
+      List<String> foodList = new ArrayList<>(); 
       for(String food : foodEaten.keySet()){
          foodList.add(food);
       }
@@ -32,7 +37,7 @@ public class Day{
    public double getFoodCount(String food){ 
    
       if (foodEaten.containsKey(food)){ return foodEaten.get(food); }
-      else return "No count available.";
+      else return 0.0;
    } 
    
    //Creates a single tuple of food and count
@@ -40,7 +45,7 @@ public class Day{
       if (foodEaten.containsKey(food)){ 
          return new String[]{food, Double.toString(getFoodCount(food))}; 
       }
-      else return new String[];
+      else return new String[]{};
    }
    
    //Mutators

@@ -10,7 +10,7 @@ public class Food{
          calories = foodCal;
          fat = foodFat;
          carbs = foodCarbs;
-         protein = foodProtein;
+         protein = foodPro;
    }
    
    //Accessors
@@ -22,7 +22,7 @@ public class Food{
    
    //Mutators
    public void setName(String newName){ name = newName; }
-   public void setCal(double newCal){ calories = newCalories; }
+   public void setCal(double newCal){ calories = newCal; }
    public void setFat(double newFat){ fat = newFat; }
    public void setCarbs(double newCarbs){ carbs = newCarbs; }
    public void setProtein(double newProtein){ protein = newProtein; }

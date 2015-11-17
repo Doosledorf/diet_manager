@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dailyplanner;
+
 
 /**
  *
@@ -16,9 +16,8 @@ public class DailyPlanner {
      */
     public static void main(String[] args) {
 
-        CSVReader csv = new CSVReader();
-        csv.parseLogCSV();
-        
+        ParseFile csv = new ParseFile("log.csv");
+        csv.openFile();
     }
     
 }

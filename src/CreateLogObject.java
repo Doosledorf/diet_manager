@@ -18,12 +18,12 @@ public class CreateLogObject {
 List<String> csv;
 Calendar date;
 
-private Map dayCollection;
+private Map<Calendar,Day> dayCollection;
     
     public CreateLogObject(List<String> csv){
         
         this.csv = csv;
-                
+        dayCollection = new HashMap<>();
     }
     
     public void setDate(){
@@ -31,7 +31,11 @@ private Map dayCollection;
         String yearString = csv.get(0);
         String monthString = csv.get(1);
         String dayString = csv.get(2);
-       
+        
+        for (int i = 0;i < yearString.length(); i++){
+        System.out.println(yearString.charAt(i));
+        }
+        
         int year = Integer.parseInt(yearString);
         int month = Integer.parseInt(monthString);
         int day = Integer.parseInt(dayString);

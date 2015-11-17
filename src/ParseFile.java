@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dailyplanner;
+
 
 import java.io.*;
 import java.util.List;
@@ -20,7 +20,7 @@ public class ParseFile {
     File csv = null;
     FileInputStream fis = null;
     BufferedInputStream bis = null;
-    DataInputStream dis = null;
+    BufferedReader br = null;
     List<String> parsedList;
     
     public ParseFile(String fileName){
@@ -34,18 +34,21 @@ public class ParseFile {
         try{
             csv = new File(fileName);
 
+            br = new BufferedReader(
+                    new InputStreamReader(new FileInputStream(
+                            "log.csv"), "UTF-8"));
+
             
-            fis = new FileInputStream(csv);
-            bis = new BufferedInputStream(fis);
-            dis = new DataInputStream(bis);
-            
-            while (dis.available() != 0){
+            String currentLine = br.readLine();            
+            while (currentLine != null){
                 
-                String currentLine = dis.readLine();
                 parsedList = Arrays.asList(currentLine.split(","));
+                System.out.println(parsedList);
+
                 CreateLogObject clo = new CreateLogObject(parsedList);
                 clo.setDate();
                 
+                currentLine = br.readLine(); 
             }
             
         } 
