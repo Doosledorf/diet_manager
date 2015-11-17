@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
@@ -13,34 +12,27 @@ import java.util.HashMap;
  *
  * @author Jake
  */
-public class CreateLogObject {
+public class DayLog {
 
 List<String> csv;
-Calendar date;
+String date = "";
 
-private Map<Calendar,Day> dayCollection;
+private Map<String,Day> dayCollection;
     
-    public CreateLogObject(List<String> csv){
+    public DayLog(List<String> csv){
         
         this.csv = csv;
         dayCollection = new HashMap<>();
+        
     }
     
     public void setDate(){
         
-        String yearString = csv.get(0);
-        String monthString = csv.get(1);
-        String dayString = csv.get(2);
+        String year = csv.get(0);
+        String month = csv.get(1);
+        String day = csv.get(2);
         
-        for (int i = 0;i < yearString.length(); i++){
-        System.out.println(yearString.charAt(i));
-        }
-        
-        int year = Integer.parseInt(yearString);
-        int month = Integer.parseInt(monthString);
-        int day = Integer.parseInt(dayString);
-        
-        date.set(year,month,day);
+        date = year + "-" + month + "-" + day;
         
         Day aDay = new Day();
         
@@ -49,7 +41,6 @@ private Map<Calendar,Day> dayCollection;
             checkFlag(thisDay);
         }
         else{
-            
             checkFlag(aDay);
             dayCollection.put(date,aDay);
         }
@@ -77,6 +68,12 @@ private Map<Calendar,Day> dayCollection;
             
         }
     
+    }
+    
+    public Map<String,Day> getLog(){
+        
+        return dayCollection;
+        
     }
        
 }

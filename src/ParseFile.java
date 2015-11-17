@@ -8,7 +8,6 @@
 import java.io.*;
 import java.util.List;
 import java.util.Arrays;
-import java.util.ArrayList;
 
 /**
  *
@@ -18,10 +17,8 @@ public class ParseFile {
     
     String fileName = "";
     File csv = null;
-    FileInputStream fis = null;
-    BufferedInputStream bis = null;
     BufferedReader br = null;
-    List<String> parsedList;
+    List<String> splitList;
     
     public ParseFile(String fileName){
         
@@ -29,36 +26,41 @@ public class ParseFile {
         
     }
     
-    public List<String> openFile(){
+    public void openFile(){
         
         try{
             csv = new File(fileName);
 
             br = new BufferedReader(
                     new InputStreamReader(new FileInputStream(
-                            "log.csv"), "UTF-8"));
+                            fileName), "UTF-8"));
 
             
             String currentLine = br.readLine();            
             while (currentLine != null){
                 
-                parsedList = Arrays.asList(currentLine.split(","));
-                System.out.println(parsedList);
-
-                CreateLogObject clo = new CreateLogObject(parsedList);
-                clo.setDate();
+                splitList = Arrays.asList(currentLine.split(","));
+                        
+                switch (fileName) {
+                    case "log.csv":
+                        DayLog dl = new DayLog(splitList);
+                        dl.setDate();
+                        break;
+                    case "foods.csv":
+                        FoodStore fs = new FoodStore(splitList);
+                        fs.checkFlag();
+                        break;
+                }
                 
                 currentLine = br.readLine(); 
             }
-            
-        } 
+        }
         catch(FileNotFoundException fnfe){
             fnfe.printStackTrace();
         }
         catch(IOException ioe){
             ioe.printStackTrace();
         }
-        return(parsedList);
     }
-    
+       
 }

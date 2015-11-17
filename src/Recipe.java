@@ -1,13 +1,13 @@
-import java.util.*
+import java.util.*;
 
 public class Recipe{
    
    //Attributes
    String name; 
-   Map<String, String> ingredients; //Component + Amount w/ Units
+   Map<String,String> ingredients; //Component + Amount w/ Units
    
    //Constructor 
-   public Recipe(String recName, recIngredients){
+   public Recipe(String recName, Map<String,String> recIngredients){
       
         name = recName;
         ingredients = recIngredients;
@@ -19,7 +19,7 @@ public class Recipe{
    //Get list of ingredients
    public List<String> getIngredientList(){
    
-      List<String> ingredientList = new ArrayList<String>(); 
+      List<String> ingredientList = new ArrayList<>(); 
       for(String ingredient : ingredients.keySet()){
          ingredientList.add(ingredient);
       }
