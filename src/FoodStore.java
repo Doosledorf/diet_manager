@@ -14,27 +14,48 @@ import java.util.HashMap;
  */
 public class FoodStore {
 
-List<String> csv;
-String date = "";
+List<List<String>> csv;
+String name;
 
 private Map<String,Food> foodCollection;
     
-    public FoodStore(List<String> csv){
+    public FoodStore(List<List<String>> csv){
         
         this.csv = csv;
         foodCollection = new HashMap<>();
         
     }
     
-    public void checkFlag(){
+    public void addToCollection(){
         
-        if (csv.get(0).equals("b")){
+        for(List<String> item : csv){
             
-            String name = csv.get(1);
-            String caloriesString = csv.get(2);
-            String fatString = csv.get(3);
-            String carbString = csv.get(4);
-            String proteinString = csv.get(5);
+            name = item.get(1);
+            
+            if (foodCollection.containsKey(name)==true){
+                System.out.println("This food is already in the "
+                        + "collection.");
+            }
+            else{
+                checkFlag(item);
+            }
+            
+            checkFlag(item);
+            
+            
+            
+        }
+        
+    }
+    
+    public void checkFlag(List<String> item){
+        
+        if (item.get(0).equals("b")){
+            
+            String caloriesString = item.get(2);
+            String fatString = item.get(3);
+            String carbString = item.get(4);
+            String proteinString = item.get(5);
             
             Double calories = Double.parseDouble(caloriesString);
             Double fat = Double.parseDouble(fatString);

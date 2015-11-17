@@ -1,16 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
 /**
- *
+ * The purpose of this file is to read in a csv file, separate each line into 
+ * a list of it's parts, then send a list of the lines to another class to be 
+ * stored as objects.
  * @author Jake
  */
 public class ParseFile {
@@ -18,8 +14,9 @@ public class ParseFile {
     String fileName = "";
     File csv = null;
     BufferedReader br = null;
-    List<String> splitList;
-    
+    List<String> splitList;//list of the pieces of one line
+    List<List<String>> splitLists;//all of the lines
+       
     public ParseFile(String fileName){
         
         this.fileName = fileName;
@@ -28,6 +25,8 @@ public class ParseFile {
     
     public void openFile(){
         
+        splitLists = new ArrayList<>();
+    
         try{
             csv = new File(fileName);
 
@@ -39,21 +38,15 @@ public class ParseFile {
             String currentLine = br.readLine();            
             while (currentLine != null){
                 
+                //splits current line by comma, then creates a list out of the array.
                 splitList = Arrays.asList(currentLine.split(","));
-                        
-                switch (fileName) {
-                    case "log.csv":
-                        DayLog dl = new DayLog(splitList);
-                        dl.setDate();
-                        break;
-                    case "foods.csv":
-                        FoodStore fs = new FoodStore(splitList);
-                        fs.checkFlag();
-                        break;
-                }
                 
-                currentLine = br.readLine(); 
+                //add to the lines list
+                splitLists.add(splitList);
+                              
+                currentLine = br.readLine();
             }
+            chooseFileDestination();
         }
         catch(FileNotFoundException fnfe){
             fnfe.printStackTrace();
@@ -61,6 +54,28 @@ public class ParseFile {
         catch(IOException ioe){
             ioe.printStackTrace();
         }
+    }
+    
+    /*
+    Uses a switch statement to determine whether to send the list to 
+    FoodStore or DayLog 
+    */
+    
+    public void chooseFileDestination(){
+        
+        switch (fileName) {
+            case "log.csv":
+                DayLog dl = new DayLog(splitLists);
+                dl.addToCollection();
+                dl.getLog();
+                break;
+            case "foods.csv":
+                FoodStore fs = new FoodStore(splitLists);
+                fs.addToCollection();
+                fs.getFoods();
+                break;
+        }
+        
     }
        
 }

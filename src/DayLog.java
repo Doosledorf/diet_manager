@@ -5,6 +5,7 @@
  */
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -14,57 +15,67 @@ import java.util.HashMap;
  */
 public class DayLog {
 
-List<String> csv;
-String date = "";
-
+private List<List<String>> csv;
+private String date = "";
 private Map<String,Day> dayCollection;
     
-    public DayLog(List<String> csv){
+    public DayLog(List<List<String>> csv){
         
         this.csv = csv;
         dayCollection = new HashMap<>();
         
     }
     
-    public void setDate(){
+    public void addToCollection(){
         
-        String year = csv.get(0);
-        String month = csv.get(1);
-        String day = csv.get(2);
-        
-        date = year + "-" + month + "-" + day;
-        
-        Day aDay = new Day();
-        
-        if (dayCollection.containsKey(date)){
-            Day thisDay = dayCollection.get(date);
-            checkFlag(thisDay);
-        }
-        else{
-            checkFlag(aDay);
-            dayCollection.put(date,aDay);
-        }
+        for(List<String> item : csv){
 
+            String year = item.get(0);
+            String month = item.get(1);
+            String day = item.get(2);
+
+            date = year + "-" + month + "-" + day;
+
+            if (dayCollection.containsKey(date)==true){
+                System.out.println("Date is already in table");
+                Day thisDay = dayCollection.get(date);
+                checkFlag(thisDay,item);
+            }
+            else{
+                Day aDay = new Day();
+                checkFlag(aDay,item);
+                dayCollection.put(date,aDay);
+            }
+
+        }
+        
+        System.out.println(dayCollection.keySet());
+        
+        for(String dat : dayCollection.keySet()){
+               System.out.println(dayCollection.get(dat).getWeight());
+               System.out.println(dayCollection.get(dat).getGoal());
+               System.out.println(dayCollection.get(dat).getFoodList());
+        }
     }
     
-    public void checkFlag(Day thisDay){
+    public void checkFlag(Day thisDay, List<String> item){
         
-        if (csv.get(3).equals("w")){
+        if (item.get(3).equals("w")){
             
-            double weight = Double.parseDouble(csv.get(4));
+            double weight = Double.parseDouble(item.get(4));
             thisDay.setWeight(weight);
             
         }
-        if (csv.get(3).equals("c")){
+        if (item.get(3).equals("c")){
             
-            double goal = Double.parseDouble(csv.get(4));
+            double goal = Double.parseDouble(item.get(4));
             thisDay.setGoal(goal);
             
         }
-        if (csv.get(3).equals("f")){
+        if (item.get(3).equals("f")){
             
-            int count = Integer.parseInt(csv.get(5));
-            thisDay.addFood(csv.get(4),count);
+            int count = Integer.parseInt(item.get(5));
+            thisDay.addFood(item.get(4),count);
             
         }
     
