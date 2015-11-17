@@ -6,7 +6,8 @@ public class Food{
 
    //Constructor
    public Food(String foodName, double foodCal, double foodFat, double foodCarbs, double foodPro){
-      
+         
+         name = foodName;
          calories = foodCal;
          fat = foodFat;
          carbs = foodCarbs;

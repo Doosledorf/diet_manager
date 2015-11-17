@@ -16,7 +16,7 @@ public class DailyPlanner {
      */
     public static void main(String[] args) {
 
-        ParseFile csv = new ParseFile("log.csv");
+        ParseFile csv = new ParseFile("foods.csv");
         csv.openFile();
     }
     

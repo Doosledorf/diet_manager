@@ -58,7 +58,7 @@ public class ParseFile {
     
     /*
     Uses a switch statement to determine whether to send the list to 
-    FoodStore or DayLog 
+    FoodStore or DayLog.
     */
     
     public void chooseFileDestination(){

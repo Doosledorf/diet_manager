@@ -15,7 +15,8 @@ import java.util.HashMap;
 public class FoodStore {
 
 List<List<String>> csv;
-String name;
+String foodName;
+String recName;
 
 private Map<String,Food> foodCollection;
     
@@ -30,20 +31,16 @@ private Map<String,Food> foodCollection;
         
         for(List<String> item : csv){
             
-            name = item.get(1);
+            foodName = item.get(1);
             
-            if (foodCollection.containsKey(name)==true){
+            if (foodCollection.containsKey(foodName)==true){
                 System.out.println("This food is already in the "
                         + "collection.");
             }
             else{
                 checkFlag(item);
             }
-            
-            checkFlag(item);
-            
-            
-            
+           
         }
         
     }
@@ -62,16 +59,44 @@ private Map<String,Food> foodCollection;
             Double carb = Double.parseDouble(carbString);
             Double protein = Double.parseDouble(proteinString);
             
-            Food aFood = new Food(name, calories, fat,
+            Food aFood = new Food(foodName, calories, fat,
                 carb, protein);
             
-            foodCollection.put(name, aFood);
+            foodCollection.put(foodName, aFood);
         }
         
-        if (csv.get(0).equals("r")){
+        else if (item.get(0).equals("r")){
             
-            //not done yet
+            recName = item.get(1);
+            double totalCal = 0.0;
+            double totalFat = 0.0;
+            double totalCarb = 0.0;
+            double totalPro = 0.0;
             
+            for(int i=2;i<item.size();i+=2){
+                
+                String ingName = item.get(i);
+                String ingCountString = item.get(i+1);
+                Double ingCount = Double.parseDouble(ingCountString);
+                
+                Food ingredient = foodCollection.get(ingName);
+                totalCal = (totalCal + ingredient.getCal())*ingCount;
+                totalFat = (totalFat + ingredient.getFat())*ingCount;
+                totalCarb = (totalCarb + ingredient.getCarbs())*ingCount;
+                totalPro = (totalPro + ingredient.getProtein())*ingCount;
+                
+            }
+            
+            Food recipe = new Food(recName,totalCal,totalFat,totalCarb,totalPro);
+            
+            foodCollection.put(recName,recipe);
+            
+            Food recFromCollection =foodCollection.get(recName);
+            System.out.println(recFromCollection.getName());
+            System.out.println(recFromCollection.getCal());
+            System.out.println(recFromCollection.getFat());
+            System.out.println(recFromCollection.getCarbs());
+            System.out.println(recFromCollection.getProtein());
         }
     
     }
