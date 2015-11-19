@@ -37,7 +37,14 @@ public class DayPanelView extends Panel
 		chartPanel = new ChartPanel(graph);
 		chartPanel.setPreferredSize(new java.awt.Dimension(400,300));
 		graphPane.add(chartPanel);
-		this.add(graphPane);
+      wPanel.add(weight);
+      wPanel.add(weightbox);
+      cPanel.add(calories);
+      cPanel.add(calorieBox);
+      graphPane.add(wPanel);
+      graphPane.add(cPanel);
+      graphPane.add(submit);
+      this.add(graphPane);
 	}
 	
 	public DefaultCategoryDataset createDataset()
