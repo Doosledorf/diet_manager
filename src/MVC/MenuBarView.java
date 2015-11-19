@@ -2,14 +2,15 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
+import java.beans.PropertyChangeEvent;
 
-public class MenuBarView extends Panel{
-	
+public class MenuBarView extends Panel
+{
 	Label food = new Label("FoodLog");
 	Label day = new Label("Day Log");
 	MouseListener tabSwitch;
 
-	public MenuBarView(View dmf)
+	public MenuBarView(MainView dmf)
    {
 		tabSwitch = new TabSwitcherView(this, dmf);
 		this.setSize(WIDTH, 200);

@@ -6,50 +6,65 @@ import java.beans.PropertyChangeEvent;
 
 public class MainView extends View
 {
-   private JPanel mainPanel = new JPanel();
-   private FoodListView list = new FoodListView();
-   private FoodPanelView foodPane = new FoodPanelView(list);
-   private DayLog dayPane = new DayLog();
-   private MenuBarView menu = new MenuBarView(this);
+   public JPanel mainPanel = new JPanel();
+   public FoodListView list = new FoodListView();
+   public FoodPanelView foodPane = new FoodPanelView(list);
+
+   // Move to MVC approach
+   public DayPanelView dayPane = new DayPanelView();
+
+   public MenuBarView menu = new MenuBarView(this);
 
    public MainView(MainController controller)
    {
       this.controller = controller;
+
+      this.setTitle("Diet Manager");
+      this.setResizable(false);
+      this.setLayout(new BorderLayout());
+      this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+      this.pack();
+
+      this.setVisible(true);
+
+      initialize();
+      listeners();
    }
 
    public void initialize()
    {
       mainPanel.setLayout(new BorderLayout());
 
-      mainPanel.setBackground(new Color(255, 255, 255));
+      mainPanel.setBackground(new Color(100, 100, 100));
       mainPanel.setBorder(BorderFactory.createEtchedBorder());
-      mainPanel.setPreferredSize(new Dimension(200, 200));
-      mainPanel.setSize(new Dimension(200, 200));
 
       this.getContentPane().removeAll();
 		mainPanel.add(this.menu, BorderLayout.PAGE_START);
 		mainPanel.add(this.foodPane, BorderLayout.LINE_START);
 		mainPanel.add(this.list, BorderLayout.LINE_END);
 
-      this.add(mainPanel);
+      System.out.println(this.getSize());
+
+      this.getContentPane().add(mainPanel);
    }
 
    public void listeners()
    {}
 
+
    public void modelPropertyChange(final PropertyChangeEvent pce)
    {
       if (pce.getPropertyName().equals(controller.FRAME_WIDTH_PROPERTY))
       {
-         Dimension size = new Dimension((Integer) pce.getNewValue(), mainPanel.getHeight());
-         mainPanel.setPreferredSize(size);
-         mainPanel.setSize(size);
+         Dimension size = new Dimension((Integer) pce.getNewValue(), this.getHeight());
+         this.setPreferredSize(size);
+         this.setSize(size);
       }
       else if (pce.getPropertyName().equals(controller.FRAME_HEIGHT_PROPERTY))
       {
-         Dimension size = new Dimension(mainPanel.getWidth(), (Integer) pce.getNewValue()); 
-         mainPanel.setPreferredSize(size);
-         mainPanel.setSize(size);
+         Dimension size = new Dimension(this.getWidth(), (Integer) pce.getNewValue()); 
+         this.setPreferredSize(size);
+         this.setSize(size);
       }
    }
 }

@@ -5,8 +5,8 @@ public class FrameModel extends Model
 
    public void defaultSettings()
    {
-      setFrameWidth(300);
-      setFrameHeight(200);
+      setFrameWidth(1020);
+      setFrameHeight(500);
    }
 
    // Accessors

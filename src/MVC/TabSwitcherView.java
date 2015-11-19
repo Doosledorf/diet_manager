@@ -1,12 +1,13 @@
 import java.awt.event.*;
 import java.awt.*;
+import javax.swing.JFrame;
 
 public class TabSwitcherView implements MouseListener{
 
 	MenuBarView menu;
-	View frame;
+	MainView frame;
 	Panel content = new Panel();
-	public TabSwitcherView(MenuBarView mb, View dmf){
+	public TabSwitcherView(MenuBarView mb, MainView dmf){
 		menu=mb;
 		frame = dmf;
 	}
@@ -22,19 +23,19 @@ public class TabSwitcherView implements MouseListener{
 			frame.mainPanel.add(frame.menu,BorderLayout.PAGE_START);
 			frame.mainPanel.add(frame.dayPane,BorderLayout.LINE_START);
 			frame.mainPanel.add(frame.list,BorderLayout.LINE_END);
-			frame.getContentPane().add(frame.content);
+			frame.getContentPane().add(frame.mainPanel);
 			frame.revalidate();
 			System.out.println("Day Log");
 		}
 		if(arg0.getComponent()==menu.food){
 			frame.getContentPane().removeAll();
-			frame.content.removeAll();
+			frame.mainPanel.removeAll();
 			frame.menu.day.setBackground(new Color(200,200,200));
 			frame.menu.food.setBackground(new Color(230,230,230));
-			frame.content.add(frame.menu,BorderLayout.PAGE_START);
-			frame.content.add(frame.foodPane,BorderLayout.LINE_START);
-			frame.content.add(frame.list,BorderLayout.LINE_END);
-			frame.getContentPane().add(frame.content);
+			frame.mainPanel.add(frame.menu,BorderLayout.PAGE_START);
+			frame.mainPanel.add(frame.foodPane,BorderLayout.LINE_START);
+			frame.mainPanel.add(frame.list,BorderLayout.LINE_END);
+			frame.getContentPane().add(frame.mainPanel);
 			frame.revalidate();
 			System.out.println("Food Log");
 		}
