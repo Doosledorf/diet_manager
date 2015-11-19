@@ -1,5 +1,6 @@
-import java.util.*;
-import java.beans.*;
+import java.util.ArrayList;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 import java.lang.reflect.Method;
 
 public abstract class Controller implements PropertyChangeListener

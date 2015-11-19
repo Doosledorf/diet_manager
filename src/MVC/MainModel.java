@@ -1,4 +1,4 @@
-public class FrameModel extends Model
+public class MainModel extends Model
 {
    private Integer frameWidth;
    private Integer frameHeight;
@@ -26,7 +26,7 @@ public class FrameModel extends Model
       Integer oldFrameWidth = this.frameWidth;
       this.frameWidth = frameWidth;
 
-      firePropertyChange(MainController.FRAME_WIDTH_PROPERTY, oldFrameWidth, frameWidth);
+      firePropertyChange(MainController.FRAME_WIDTH, oldFrameWidth, frameWidth);
    }
 
    public void setFrameHeight(Integer frameHeight)
@@ -34,6 +34,6 @@ public class FrameModel extends Model
       Integer oldFrameHeight = this.frameHeight;
       this.frameHeight = frameHeight;
 
-      firePropertyChange(MainController.FRAME_HEIGHT_PROPERTY, oldFrameHeight, frameHeight);
+      firePropertyChange(MainController.FRAME_HEIGHT, oldFrameHeight, frameHeight);
    }
 }

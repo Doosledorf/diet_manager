@@ -28,7 +28,6 @@ public class MainView extends View
       this.setVisible(true);
 
       initialize();
-      listeners();
    }
 
    public void initialize()
@@ -43,24 +42,18 @@ public class MainView extends View
 		mainPanel.add(this.foodPane, BorderLayout.LINE_START);
 		mainPanel.add(this.list, BorderLayout.LINE_END);
 
-      System.out.println(this.getSize());
-
       this.getContentPane().add(mainPanel);
    }
 
-   public void listeners()
-   {}
-
-
    public void modelPropertyChange(final PropertyChangeEvent pce)
    {
-      if (pce.getPropertyName().equals(controller.FRAME_WIDTH_PROPERTY))
+      if (pce.getPropertyName().equals(controller.FRAME_WIDTH))
       {
          Dimension size = new Dimension((Integer) pce.getNewValue(), this.getHeight());
          this.setPreferredSize(size);
          this.setSize(size);
       }
-      else if (pce.getPropertyName().equals(controller.FRAME_HEIGHT_PROPERTY))
+      else if (pce.getPropertyName().equals(controller.FRAME_HEIGHT))
       {
          Dimension size = new Dimension(this.getWidth(), (Integer) pce.getNewValue()); 
          this.setPreferredSize(size);

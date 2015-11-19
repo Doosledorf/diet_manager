@@ -6,9 +6,9 @@ import java.beans.PropertyChangeEvent;
 
 public class MenuBarView extends Panel
 {
-	Label food = new Label("FoodLog");
-	Label day = new Label("Day Log");
-	MouseListener tabSwitch;
+	public Label food = new Label("FoodLog");
+	public Label day = new Label("Day Log");
+	private MouseListener tabSwitch;
 
 	public MenuBarView(MainView dmf)
    {

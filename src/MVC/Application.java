@@ -9,15 +9,19 @@ public class Application
 
    public Application()
    {
-      FrameModel frameModel = new FrameModel();
+      MainModel mainModel = new MainModel();
+      LogModel logModel = new LogModel();
 
       MainController controller = new MainController();
       MainView mainView = new MainView(controller);
 
-      controller.addModel(frameModel);
+      controller.addModel(mainModel);
+      controller.addModel(logModel);
+
       controller.addView(mainView);
 
-      frameModel.defaultSettings();
+      mainModel.defaultSettings();
+      logModel.defaultSettings();
    }
 
    public static void main(String [] args)
