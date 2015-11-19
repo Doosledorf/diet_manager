@@ -46,7 +46,7 @@ public class ParseFile {
                               
                 currentLine = br.readLine();
             }
-            chooseFileDestination();
+
         }
         catch(FileNotFoundException fnfe){
             fnfe.printStackTrace();
@@ -54,28 +54,21 @@ public class ParseFile {
         catch(IOException ioe){
             ioe.printStackTrace();
         }
+
     }
     
-    /*
-    Uses a switch statement to determine whether to send the list to 
-    FoodStore or DayLog.
-    */
-    
     public void chooseFileDestination(){
-        
+
         switch (fileName) {
             case "log.csv":
-                DayLog dl = new DayLog(splitLists);
-                dl.addToCollection();
-                dl.getLog();
+                DayStore dl = new DayStore(splitLists);
+                dl.createMap();
                 break;
             case "foods.csv":
                 FoodStore fs = new FoodStore(splitLists);
-                fs.addToCollection();
-                fs.getFoods();
+                fs.createMap();
                 break;
-        }
-        
     }
-       
+    
+}
 }

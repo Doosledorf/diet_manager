@@ -27,7 +27,7 @@ private Map<String,Food> foodCollection;
         
     }
     
-    public void addToCollection(){
+    public void createMap(){
         
         for(List<String> item : csv){
             
@@ -72,7 +72,7 @@ private Map<String,Food> foodCollection;
             Double ingCount;
             String ingName, ingCountString;
     
-            Food recipe = new Food(true);
+            Food recipe = new Food(recName, true);
             
             for(int i=2;i<item.size();i+=2){
                 
@@ -81,10 +81,10 @@ private Map<String,Food> foodCollection;
                 ingCount = Double.parseDouble(ingCountString);
                 
                 Food ingredient = foodCollection.get(ingName);
-                recipe.setCal = (recipe.getCal + ingredient.getCal())*ingCount;
-                recipe.setFat = (recipe.getFat + ingredient.getFat())*ingCount;
-                recipe.setCarbs = (recipe.getCarbs + ingredient.getCarbs())*ingCount;
-                recipe.setProtein = (recipe.getProtein + ingredient.getProtein())*ingCount;
+                recipe.setCal((recipe.getCal() + ingredient.getCal())*ingCount);
+                recipe.setFat((recipe.getFat() + ingredient.getFat())*ingCount);
+                recipe.setCarbs((recipe.getCarbs() + ingredient.getCarbs())*ingCount);
+                recipe.setProtein((recipe.getProtein() + ingredient.getProtein())*ingCount);
                 recipe.addIngredient(ingName, ingCount);
             }
             
