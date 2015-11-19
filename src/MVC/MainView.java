@@ -6,8 +6,9 @@ import java.beans.PropertyChangeEvent;
 
 public class MainView extends View
 {
-   private JPanel content;
+   private JPanel mainPanel = new JPanel();
    private FoodListView list = new FoodListView();
+   private FoodPanelView foodPane = new FoodPanelView(list);
    private DayLog dayPane = new DayLog();
    private MenuBarView menu = new MenuBarView(this);
 
@@ -18,8 +19,6 @@ public class MainView extends View
 
    public void initialize()
    {
-      content = new JPanel();
-
       mainPanel.setLayout(new BorderLayout());
 
       mainPanel.setBackground(new Color(255, 255, 255));
@@ -28,11 +27,11 @@ public class MainView extends View
       mainPanel.setSize(new Dimension(200, 200));
 
       this.getContentPane().removeAll();
-		content.add(this.menu,BorderLayout.PAGE_START);
-		content.add(this.foodPane,BorderLayout.LINE_START);
-		content.add(this.list,BorderLayout.LINE_END);
+		mainPanel.add(this.menu, BorderLayout.PAGE_START);
+		mainPanel.add(this.foodPane, BorderLayout.LINE_START);
+		mainPanel.add(this.list, BorderLayout.LINE_END);
 
-      this.add(content);
+      this.add(mainPanel);
    }
 
    public void listeners()

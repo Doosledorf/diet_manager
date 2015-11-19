@@ -1,14 +1,12 @@
 import java.awt.event.*;
 import java.awt.*;
 
-
-
 public class TabSwitcherView implements MouseListener{
 
-	MenuBar menu;
+	MenuBarView menu;
 	View frame;
 	Panel content = new Panel();
-	TabSwitcher(MenuBar mb, View dmf){
+	public TabSwitcherView(MenuBarView mb, View dmf){
 		menu=mb;
 		frame = dmf;
 	}
@@ -17,13 +15,13 @@ public class TabSwitcherView implements MouseListener{
 		// TODO Auto-generated method stub
 		if(arg0.getComponent()==menu.day){
 			frame.getContentPane().removeAll();
-			frame.content.removeAll();
+			frame.mainPanel.removeAll();
 			frame.menu.food.setBackground(new Color(200,200,200));
 			frame.menu.day.setBackground(new Color(230,230,230));
 			
-			frame.content.add(frame.menu,BorderLayout.PAGE_START);
-			frame.content.add(frame.dayPane,BorderLayout.LINE_START);
-			frame.content.add(frame.list,BorderLayout.LINE_END);
+			frame.mainPanel.add(frame.menu,BorderLayout.PAGE_START);
+			frame.mainPanel.add(frame.dayPane,BorderLayout.LINE_START);
+			frame.mainPanel.add(frame.list,BorderLayout.LINE_END);
 			frame.getContentPane().add(frame.content);
 			frame.revalidate();
 			System.out.println("Day Log");

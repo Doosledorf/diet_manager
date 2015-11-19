@@ -9,8 +9,9 @@ public class MenuBarView extends Panel{
 	Label day = new Label("Day Log");
 	MouseListener tabSwitch;
 
-	public MenuBarView(View dmf){
-		tabSwitch = new TabSwitcher(this,dmf);
+	public MenuBarView(View dmf)
+   {
+		tabSwitch = new TabSwitcherView(this, dmf);
 		this.setSize(WIDTH, 200);
 		this.setBackground(new Color(180,180,180));
 		food.setFont(new Font("addFont",Font.CENTER_BASELINE,24));
