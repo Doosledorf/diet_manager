@@ -16,6 +16,7 @@ public class FoodPanelView extends Panel
    TextField proField = new TextField(20);
    Label carbLabel = new Label("Carbs: ");
    TextField carbField = new TextField(20);
+   Button searchBttn = new Button("Search");
    
    Label addFoodLabel = new Label("Add Food");
    
@@ -47,7 +48,12 @@ public class FoodPanelView extends Panel
       addFood.setLayout(new GridLayout(4,1));
       addFood.add(addFoodLabel);
       addFoodLabel.setFont(addFont);
+      searchboxpane.setLayout(new GridLayout(0,1));
       searchboxpane.add(foodBox);
+      Panel searchBttnpane = new Panel();
+      searchBttn.addActionListener(new SearchButtonListener(this));
+      searchBttnpane.add(searchBttn);
+      searchboxpane.add(searchBttnpane);
       addFood.add(searchboxpane);
       addFood.add(statPane);
       addingFood.setLayout(new FlowLayout());
