@@ -60,34 +60,33 @@ private Map<String,Food> foodCollection;
             Double protein = Double.parseDouble(proteinString);
             
             Food aFood = new Food(foodName, calories, fat,
-                carb, protein);
+                carb, protein, false);
             
             foodCollection.put(foodName, aFood);
         }
         
         else if (item.get(0).equals("r")){
             
-            recName = item.get(1);
-            double totalCal = 0.0;
-            double totalFat = 0.0;
-            double totalCarb = 0.0;
-            double totalPro = 0.0;
+            String recName = item.get(1);
+            
+            Double ingCount;
+            String ingName, ingCountString;
+    
+            Food recipe = new Food(true);
             
             for(int i=2;i<item.size();i+=2){
                 
-                String ingName = item.get(i);
-                String ingCountString = item.get(i+1);
-                Double ingCount = Double.parseDouble(ingCountString);
+                ingName = item.get(i);
+                ingCountString = item.get(i+1);
+                ingCount = Double.parseDouble(ingCountString);
                 
                 Food ingredient = foodCollection.get(ingName);
-                totalCal = (totalCal + ingredient.getCal())*ingCount;
-                totalFat = (totalFat + ingredient.getFat())*ingCount;
-                totalCarb = (totalCarb + ingredient.getCarbs())*ingCount;
-                totalPro = (totalPro + ingredient.getProtein())*ingCount;
-                
+                recipe.setCal = (recipe.getCal + ingredient.getCal())*ingCount;
+                recipe.setFat = (recipe.getFat + ingredient.getFat())*ingCount;
+                recipe.setCarbs = (recipe.getCarbs + ingredient.getCarbs())*ingCount;
+                recipe.setProtein = (recipe.getProtein + ingredient.getProtein())*ingCount;
+                recipe.addIngredient(ingName, ingCount);
             }
-            
-            Food recipe = new Food(recName,totalCal,totalFat,totalCarb,totalPro);
             
             foodCollection.put(recName,recipe);
             
