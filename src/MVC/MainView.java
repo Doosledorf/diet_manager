@@ -6,9 +6,10 @@ import java.beans.PropertyChangeEvent;
 
 public class MainView extends View
 {
-   private JPanel mainPanel;
-   private JTextField mainTextField;
-   private JButton mainButton;
+   private JPanel content;
+   private FoodListView list = new FoodListView();
+   private DayLog dayPane = new DayLog();
+   private MenuBarView menu = new MenuBarView(this);
 
    public MainView(MainController controller)
    {
@@ -17,11 +18,7 @@ public class MainView extends View
 
    public void initialize()
    {
-      mainPanel = new JPanel();
-      mainTextField = new JTextField();
-      mainButton = new JButton("test");
-
-      mainTextField.setText("The model will overwrite this.");
+      content = new JPanel();
 
       mainPanel.setLayout(new BorderLayout());
 
@@ -30,10 +27,16 @@ public class MainView extends View
       mainPanel.setPreferredSize(new Dimension(200, 200));
       mainPanel.setSize(new Dimension(200, 200));
 
-      mainPanel.add(mainTextField);
-      mainPanel.add(mainButton);
-      this.add(mainPanel);
+      this.getContentPane().removeAll();
+		content.add(this.menu,BorderLayout.PAGE_START);
+		content.add(this.foodPane,BorderLayout.LINE_START);
+		content.add(this.list,BorderLayout.LINE_END);
+
+      this.add(content);
    }
+
+   public void listeners()
+   {}
 
    public void modelPropertyChange(final PropertyChangeEvent pce)
    {
