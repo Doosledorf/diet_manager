@@ -16,7 +16,7 @@ import java.util.HashMap;
  */
 public class DayStore {
 
-
+    
 private List<List<String>> csv;
 private String date = "";
 private Map<String,Day> dayMap;
@@ -37,7 +37,6 @@ public DayStore(List<List<String>> csv){
             date = year + "-" + month + "-" + day;
 
             if (dayMap.containsKey(date)==true){
-                System.out.println("Date is already in table");
                 Day thisDay = dayMap.get(date);
                 checkFlag(thisDay,item);
             }
@@ -108,6 +107,7 @@ public DayStore(List<List<String>> csv){
         File file = new File("log.csv");
         
         CsvLogWriter csvlw = new CsvLogWriter(file,dayMap);
+        csvlw.save();
         
     }
        

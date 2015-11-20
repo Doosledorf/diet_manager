@@ -55,8 +55,8 @@ public class CsvLogWriter {
                 
                 List<String> foodList = log.getFoodList();
                 for(String food: foodList){
-                    Double count = log.getFoodCount(food);
-                    pw.println(dateString+",f,"+food+","+goal);
+                    double count = log.getFoodCount(food);
+                    pw.println(dateString+",f,"+food+","+count);
                 }
             }              
             

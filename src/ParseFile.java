@@ -24,6 +24,8 @@ public class ParseFile
       openFile();
    }
    
+   public List<List<String>> getLists(){ return splitLists;}
+   
    public void openFile(){
       
       splitLists = new ArrayList<>();
