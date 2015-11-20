@@ -1,44 +1,47 @@
 import java.util.List;
+import java.util.Map;
 
 public class LogModel extends Model
 {
-   private List<List<String>> dayLogData;
-   private List<List<String>> foodLogData;
+   private Map<String, Day> dayLogData;
+   private Map<String, Food> foodLogData;
 
    public void defaultSettings()
    {
       ParseFile dayCsv = new ParseFile("log.csv");
       DayStore dayStore = new DayStore(dayCsv.splitLists);
       dayStore.createMap();
+      setDayLogData(dayStore.getLog());
 
       ParseFile foodsCsv = new ParseFile("foods.csv");
       FoodStore foodStore = new FoodStore(foodsCsv.splitLists);
       foodStore.createMap();
+      setFoodLogData(foodStore.getLog());
    }
 
    // Accessors
-   public List<List<String>> getDayLogData()
+   public Map<String, Day> getDayLogData()
    {
       return dayLogData;
    }
 
-   public List<List<String>> getFoodLogData()
+   public Map<String, Food> getFoodLogData()
    {
       return foodLogData;
    }
 
    // Mutators
-   public void setDayLogData(List<List<String>> dayLogData)
+   public void setDayLogData(Map<String, Day> dayLogData)
    {
-      List<List<String>> oldDayLogdata = this.dayLogData;
+      Map<String, Day> oldDayLogdata = this.dayLogData;
       this.dayLogData = dayLogData;
 
       firePropertyChange(MainController.DAY_LOG_DATA, oldDayLogdata, dayLogData);
    }
 
-   public void setFoodLogData(List<List<String>> foodLogData)
+   public void setFoodLogData(Map<String, Food> foodLogData)
    {
-      List<List<String>> oldFoodLogData = this.foodLogData;
+      Map<String, Food> oldFoodLogData = this.foodLogData;
       this.foodLogData = foodLogData;
 
       firePropertyChange(MainController.FOOD_LOG_DATA, oldFoodLogData, foodLogData);
