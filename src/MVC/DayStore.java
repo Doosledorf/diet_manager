@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -13,20 +14,42 @@ import java.util.HashMap;
  *
  * @author Jake
  */
-public class DayLog {
+public class DayStore {
+
 
 private List<List<String>> csv;
 private String date = "";
-private Map<String,Day> dayCollection;
+private Map<String,Day> dayMap;
     
-    public DayLog(List<List<String>> csv){
+public DayStore(List<List<String>> csv){
+
+    this.csv = csv;
+    dayMap = new HashMap<>();
+
+}
+    
+    public void add(List<String> item){
         
-        this.csv = csv;
-        dayCollection = new HashMap<>();
+            String year = item.get(0);
+            String month = item.get(1);
+            String day = item.get(2);
+
+            date = year + "-" + month + "-" + day;
+
+            if (dayMap.containsKey(date)==true){
+                System.out.println("Date is already in table");
+                Day thisDay = dayMap.get(date);
+                checkFlag(thisDay,item);
+            }
+            else{
+                Day aDay = new Day();
+                checkFlag(aDay,item);
+                dayMap.put(date,aDay);
+            }
         
     }
-    
-    public void addToCollection(){
+
+    public void createMap(){
         
         for(List<String> item : csv){
 
@@ -36,25 +59,25 @@ private Map<String,Day> dayCollection;
 
             date = year + "-" + month + "-" + day;
 
-            if (dayCollection.containsKey(date)==true){
+            if (dayMap.containsKey(date)==true){
                 System.out.println("Date is already in table");
-                Day thisDay = dayCollection.get(date);
+                Day thisDay = dayMap.get(date);
                 checkFlag(thisDay,item);
             }
             else{
                 Day aDay = new Day();
                 checkFlag(aDay,item);
-                dayCollection.put(date,aDay);
+                dayMap.put(date,aDay);
             }
 
         }
         
-        System.out.println(dayCollection.keySet());
+        System.out.println(dayMap.keySet());
         
-        for(String dat : dayCollection.keySet()){
-               System.out.println(dayCollection.get(dat).getWeight());
-               System.out.println(dayCollection.get(dat).getGoal());
-               System.out.println(dayCollection.get(dat).getFoodList());
+        for(String dat : dayMap.keySet()){
+               System.out.println(dayMap.get(dat).getWeight());
+               System.out.println(dayMap.get(dat).getGoal());
+               System.out.println(dayMap.get(dat).getFoodList());
         }
     }
     
@@ -83,8 +106,17 @@ private Map<String,Day> dayCollection;
     
     public Map<String,Day> getLog(){
         
-        return dayCollection;
+        return dayMap;
+        
+    }
+    
+    public void save(){
+        
+        File file = new File("log.csv");
+        
+        CsvLogWriter csvlw = new CsvLogWriter(file,dayMap);
         
     }
        
+    
 }

@@ -17,14 +17,14 @@ public class SearchButtonListener implements ActionListener
       System.out.println("Searching for: "+foodSearch);
       //This needs to search for foodSearch in the CSV
       if(true){
-         food.calField.setText("This is fake");
-         food.fatField.setText("Still fake");
-         food.carbField.setText("Still no");
-         food.proField.setText("This is nope");
+         food.calField.setText("0");
+         food.fatField.setText("0");
+         food.carbField.setText("0");
+         food.proField.setText("0");
       }
       //This needs to stay the same or display something new, etc.
       else if(false){
-         food.foodBox.setText("Not in database");
+         food.foodBox.setText("Not Defined");
       }
 	}
 }

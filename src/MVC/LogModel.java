@@ -7,8 +7,13 @@ public class LogModel extends Model
 
    public void defaultSettings()
    {
-      setDayLogData(null);
-      setFoodLogData(null);
+      ParseFile dayCsv = new ParseFile("log.csv");
+      DayStore dayStore = new DayStore(dayCsv.splitLists);
+      dayStore.createMap();
+
+      ParseFile foodsCsv = new ParseFile("foods.csv");
+      FoodStore foodStore = new FoodStore(foodsCsv.splitLists);
+      foodStore.createMap();
    }
 
    // Accessors
