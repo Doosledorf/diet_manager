@@ -95,7 +95,7 @@ private Map<String,Food> foodMap;
     
     }
     
-    public Map<String,Food> getFoods(){
+    public Map<String,Food> getLog(){
         
         return foodMap;
         

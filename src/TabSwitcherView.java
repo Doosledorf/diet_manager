@@ -2,16 +2,19 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.JFrame;
 
-public class TabSwitcherView implements MouseListener
+public class TabSwitcherView extends View implements MouseListener
 {
+   private Controller controller;
+
 	private MenuBarView menu;
 	private MainView frame;
 	private Panel content = new Panel();
 
-	public TabSwitcherView(MenuBarView mb, MainView dmf)
+	public TabSwitcherView(MainController controller, MenuBarView mb)
    {
+      this.controller = controller;
+
 		menu=mb;
-		frame = dmf;
 	}
 
 	@Override
@@ -20,9 +23,9 @@ public class TabSwitcherView implements MouseListener
 		// TODO Auto-generated method stub
 		if (arg0.getComponent()== menu.day)
       {
-			frame.getContentPane().removeAll();
-			frame.mainPanel.removeAll();
-			frame.menu.food.setBackground(new Color(200,200,200));
+			mainFrame.getContentPane().removeAll();
+			menu.mainFrame.removeAll();
+			mainFrame.menu.food.setBackground(new Color(200,200,200));
 			frame.menu.day.setBackground(new Color(230,230,230));
 			
 			frame.mainPanel.add(frame.menu,BorderLayout.PAGE_START);

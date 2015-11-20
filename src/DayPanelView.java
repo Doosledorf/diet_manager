@@ -7,8 +7,10 @@ import org.jfree.data.category.*;
 import java.awt.*;
 import java.util.*;
 
-public class DayPanelView extends Panel
+public class DayPanelView extends View
 {
+   private MainController controller;
+
 	private Panel graphPane = new Panel();
 	private Panel wPanel = new Panel();
 	private Panel cPanel = new Panel();
@@ -22,8 +24,10 @@ public class DayPanelView extends Panel
 	private JFreeChart graph;
 	private ChartPanel chartPanel;
 
-	public DayPanelView()
+	public DayPanelView(MainController controller)
    {
+      this.controller = controller;
+
 		this.setSize(320,320);
 		this.setBackground(new Color(100,100,100));
 		this.setLayout(new GridLayout(0,1));

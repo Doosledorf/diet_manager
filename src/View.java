@@ -1,9 +1,13 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
 import java.beans.PropertyChangeEvent;
-import javax.swing.JFrame;
 
-public abstract class View extends JFrame
+public abstract class View extends JPanel
 {
    public MainController controller;
+   public JFrame mainFrame = new JFrame();
 
    public void modelPropertyChange(PropertyChangeEvent evt) {};
 }

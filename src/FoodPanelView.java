@@ -3,8 +3,10 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class FoodPanelView extends Panel
+public class FoodPanelView extends View
 {
+   Controller controller;
+
    Panel addFood = new Panel();
    
    Panel statPane = new Panel();
@@ -26,9 +28,10 @@ public class FoodPanelView extends Panel
    Panel addingFood = new Panel();
    Font addFont = new Font("addFont",Font.CENTER_BASELINE,24);
 
-	public FoodPanelView(FoodListView fl)
+	public FoodPanelView(Controller controller, FoodListView fl)
    {
-      
+      this.controller = controller;
+
       this.setSize(320, 320);
       this.setBackground(new Color(100,100,100));
       this.setLayout(new GridLayout(1,2));

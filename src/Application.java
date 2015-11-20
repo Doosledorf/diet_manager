@@ -14,11 +14,13 @@ public class Application
 
       MainController controller = new MainController();
       MainView mainView = new MainView(controller);
+      FoodListView foodListView = new FoodListView(controller);
 
       controller.addModel(mainModel);
       controller.addModel(logModel);
 
       controller.addView(mainView);
+      controller.addView(foodListView);
 
       mainModel.defaultSettings();
       logModel.defaultSettings();
