@@ -34,8 +34,8 @@ private Map<String,Food> foodCollection;
             foodName = item.get(1);
             
             if (foodCollection.containsKey(foodName)==true){
-                System.out.println("This food is already in the "
-                        + "collection.");
+                foodCollection.remove(foodName);
+                checkFlag(item);
             }
             else{
                 checkFlag(item);
@@ -90,12 +90,6 @@ private Map<String,Food> foodCollection;
             
             foodCollection.put(recName,recipe);
             
-            Food recFromCollection =foodCollection.get(recName);
-            System.out.println(recFromCollection.getName());
-            System.out.println(recFromCollection.getCal());
-            System.out.println(recFromCollection.getFat());
-            System.out.println(recFromCollection.getCarbs());
-            System.out.println(recFromCollection.getProtein());
         }
     
     }

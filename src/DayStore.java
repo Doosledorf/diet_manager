@@ -60,7 +60,6 @@ public DayStore(List<List<String>> csv){
             date = year + "-" + month + "-" + day;
 
             if (dayMap.containsKey(date)==true){
-                System.out.println("Date is already in table");
                 Day thisDay = dayMap.get(date);
                 checkFlag(thisDay,item);
             }
@@ -72,13 +71,7 @@ public DayStore(List<List<String>> csv){
 
         }
         
-        System.out.println(dayMap.keySet());
-        
-        for(String dat : dayMap.keySet()){
-               System.out.println(dayMap.get(dat).getWeight());
-               System.out.println(dayMap.get(dat).getGoal());
-               System.out.println(dayMap.get(dat).getFoodList());
-        }
+
     }
     
     public void checkFlag(Day thisDay, List<String> item){
