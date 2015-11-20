@@ -20,7 +20,6 @@ public class Application
       controller.addModel(logModel);
 
       controller.addView(mainView);
-      controller.addView(foodListView);
 
       mainModel.defaultSettings();
       logModel.defaultSettings();
