@@ -6,19 +6,26 @@ public class LogModel extends Model
    private Map<String, Day> dayLogData;
    private Map<String, Food> foodLogData;
    private Map<String, Exercise> exerciseLogData;
+   
+   private Director theDirector;
    private static final String[] CSV_LIST = {"log.csv", "foods.csv", "exercise.csv"};
 
    public void defaultSettings()
    {
-      ParseFile dayCsv = new ParseFile("log.csv");
-      DayStore dayStore = new DayStore(dayCsv.splitLists);
-      dayStore.createMap();
-      setDayLogData(dayStore.getLog());
-
-      ParseFile foodsCsv = new ParseFile("foods.csv");
-      FoodStore foodStore = new FoodStore(foodsCsv.splitLists);
-      foodStore.createMap();
-      setFoodLogData(foodStore.getLog());
+   
+      for(String csv : CSV_LIST){
+         
+         theDirector.direct(csv);
+      } 
+//       ParseFile dayCsv = new ParseFile("log.csv");
+//       DayStore dayStore = new DayStore(dayCsv.splitLists);
+//       dayStore.createMap();
+//       setDayLogData(dayStore.getLog());
+// 
+//       ParseFile foodsCsv = new ParseFile("foods.csv");
+//       FoodStore foodStore = new FoodStore(foodsCsv.splitLists);
+//       foodStore.createMap();
+//       setFoodLogData(foodStore.getLog());
    }
 
    // Accessors

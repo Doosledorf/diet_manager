@@ -11,22 +11,19 @@ import java.util.Arrays;
  */
 public class Director
 { 
-   private String mode = "READ"; //Might do something with this.
    
-   private File csv = null;
-   private BufferedReader br = null;
-   private List<List<String>> splitLists;//all of the lines
+   private String mode; //Might do something with this.
+         
+   public Director(){
       
-   public Director(String fileName){
-      
-      direct();
+      mode = "READ";
    }
    
-   public void direct( String filename ){
+   public void direct( String fileName ){
       
-      List<List<String>> primedData = openfile(fileName);
+      List<List<String>> primedData = openFile(fileName);
       
-      switch(filename){
+      switch(fileName){
          
          case "log.csv" : break;
          
@@ -36,17 +33,18 @@ public class Director
       }
    }
    
-   public List<List<String>> openFile( String filename ){
+   public List<List<String>> openFile( String fileName ){
+   
+      List<List<String>> readLineHolder = new ArrayList<List<String>>();
       
       try{
          
-         Filecsv = new File(fileName);
+         File csv = new File(fileName);
       
          BufferedReader br = new BufferedReader(
                              new InputStreamReader(
                              new FileInputStream(fileName), "UTF-8"));
       
-         List<String> readLineHolder;
          String currentLine = br.readLine();
                      
          while (currentLine != null){
@@ -58,15 +56,17 @@ public class Director
             readLineHolder.add(readLine);
                           
             currentLine = br.readLine();
-            
-            return readLineHolder();
          }
       }
       catch(FileNotFoundException fnfe){
          fnfe.printStackTrace();
+         return null;
       }
       catch(IOException ioe){
          ioe.printStackTrace();
+         return null;
       }
+      
+      return readLineHolder;
    }
 }
