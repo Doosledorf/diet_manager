@@ -27,11 +27,14 @@ public class MainView extends View{
    
    public void init(){
       
-      mainFrame.setLayout(new BorderLayout());
+      mainFrame.setLayout(new BorderLayout());//BoxLayout(mainFrame.getContentPane(), BoxLayout.Y_AXIS));
       
       //Instantiate the menubar.
       MainMenuBar mainMenu = new MainMenuBar();
       mainFrame.setJMenuBar(mainMenu);
+      
+      //Instantiate the date picker
+      DatePanel datePick = new DatePanel();
       
       //Instantiate the log.
       ListLogPanel listLog = new ListLogPanel();
@@ -39,6 +42,7 @@ public class MainView extends View{
       //Config those that need it.
       
       //Pull em together.
+      mainFrame.add(datePick, BorderLayout.NORTH);
       mainFrame.add(listLog, BorderLayout.CENTER);  
    }
       
