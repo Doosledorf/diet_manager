@@ -23,6 +23,7 @@ public class MainView extends View{
       //Render
       init();
       mainFrame.setVisible(true);
+      mainFrame.pack();
    }
    
    public void init(){
