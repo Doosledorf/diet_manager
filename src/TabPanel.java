@@ -7,10 +7,11 @@ import java.awt.event.*;
 public class TabPanel extends View{
    
    private String iconPath;
-   private Object[] colNames;
+   private String[] colNames;
    private JButton logAdd, logDelete;
    private JTable logTable;
    private JComboBox searchExisting;
+   private JPanel dataPanelHolder;
    
    //constructs
    public TabPanel(String whichType){
@@ -19,11 +20,11 @@ public class TabPanel extends View{
       switch(whichType){
          
          case "Food": iconPath = "/assets/images/food.png";
-                      colNames = new Object[]{"", "Name", "Unit Amount", "Calories", "Fat", "Protein", "Carbs"}; 
+                      colNames = new String[]{" ", "Name", "Unit Amount", "Calories", "Fat", "Protein", "Carbs"}; 
                       break;
                       
          case "Exercise": iconPath = "/assets/images/stopwatch.png";
-                          colNames = new Object[]{"", "Name", "Time Spent (in minutes)", "Calories Burnt"};
+                          colNames = new String[]{" ", "Name", "Time Spent (in minutes)", "Calories Burnt"};
                           break;
       }
       //render
@@ -31,15 +32,24 @@ public class TabPanel extends View{
    }
    
    //renders
-   public void init(String type, JPanel base, Object[] tableColNames){
+   public void init(String type, JPanel base, String[] tableColNames){
         
       //Config log tab panel
       base.setLayout(new BoxLayout(base, BoxLayout.Y_AXIS));
       
-      //Create a Table and add to the panel
-      logTable = new JTable(/*new DefaultTableModel(tableColNames)*/);
-      base.add(logTable);
+      //Create a panel and add to the panel
+      dataPanelHolder = new JPanel();
+      base.add(dataPanelHolder);
       
+      //place column panels in
+      JPanel headerPanel = new JPanel();
+      headerPanel.setLayout(new GridLayout(1, tableColNames.length));
+      for(String colName : colNames){
+         JLabel headerLabel = new JLabel(colName, JLabel.CENTER);
+         headerPanel.add(headerLabel);
+      }
+      dataPanelHolder.add(headerPanel);
+            
       //Config log tab panel's button panel
       JPanel logButtonPanel = new JPanel();
       logButtonPanel.setLayout(new BoxLayout(logButtonPanel, BoxLayout.X_AXIS));
@@ -66,4 +76,5 @@ public class TabPanel extends View{
    public JButton getLogDelete(){ return logDelete; }
    public JTable getLogTable(){ return logTable; }
    public JComboBox getBox(){ return searchExisting; }
+   public JPanel getDataHolder(){ return dataPanelHolder; }
 }
