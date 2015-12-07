@@ -10,6 +10,7 @@ public class TabPanel extends View{
    private Object[] colNames;
    private JButton logAdd, logDelete;
    private JTable logTable;
+   private JComboBox searchExisting;
    
    //constructs
    public TabPanel(String whichType){
@@ -43,6 +44,12 @@ public class TabPanel extends View{
       JPanel logButtonPanel = new JPanel();
       logButtonPanel.setLayout(new BoxLayout(logButtonPanel, BoxLayout.X_AXIS));
       
+      //Create SearchBox + Label
+      JLabel comboBoxLabel = new JLabel("Search " + type + ": ", JLabel.RIGHT);
+      searchExisting = new JComboBox();
+      logButtonPanel.add(comboBoxLabel);
+      logButtonPanel.add(searchExisting);
+      
       //Create + Add buttons to the above
       logAdd = new JButton("Add " + type);
       logDelete = new JButton("Delete " + type);
@@ -58,4 +65,5 @@ public class TabPanel extends View{
    public JButton getLogAdd(){ return logAdd; }
    public JButton getLogDelete(){ return logDelete; }
    public JTable getLogTable(){ return logTable; }
+   public JComboBox getBox(){ return searchExisting; }
 }
