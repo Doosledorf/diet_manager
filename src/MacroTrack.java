@@ -5,6 +5,8 @@ import java.awt.event.*;
 
 public class MacroTrack extends View{
 
+   private JTextField fats, fatsPct, protein, proteinPct, carbs, carbsPct;
+
    public MacroTrack(){
       
       init();
@@ -32,24 +34,28 @@ public class MacroTrack extends View{
       
       //Our Labels
       JLabel blank = new JLabel("");
-      JLabel proteinLabel = new JLabel("Protein");
-      JLabel fatsLabel = new JLabel("Fats");
-      JLabel carbsLabel = new JLabel("Carbs");
+      JLabel proteinLabel = new JLabel("Protein: ", JLabel.RIGHT);
+      JLabel fatsLabel = new JLabel("Fats: ", JLabel.RIGHT);
+      JLabel carbsLabel = new JLabel("Carbs: ", JLabel.RIGHT);
       JLabel macrosConsumedLabel = new JLabel("Total Consumed");
       JLabel percentageLabel = new JLabel ("Calorie Contribution");
-      
-      //Our Fields
-      JTextField protein = new JTextField(8);
-      protein.setEditable(false);
-      JTextField proteinPct = new JTextField(4);
-      proteinPct.setEditable(false);
-      JTextField fats = new JTextField(8);
+            
+      //Fats
+      fats = new JTextField(8);
       fats.setEditable(false);
-      JTextField fatsPct = new JTextField(4);
+      fatsPct = new JTextField(4);
       fatsPct.setEditable(false);
-      JTextField carbs = new JTextField(8);
-      carbs.setEditable(false); 
-      JTextField carbsPct = new JTextField(4);
+      
+      //Protein
+      protein = new JTextField(8);
+      protein.setEditable(false);
+      proteinPct = new JTextField(4);
+      proteinPct.setEditable(false);
+      
+      //carbs
+      carbs = new JTextField(8);
+      carbs.setEditable(false);
+      carbsPct = new JTextField(4);
       carbsPct.setEditable(false);
       
       //Add to panel

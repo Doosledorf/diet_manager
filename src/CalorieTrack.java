@@ -37,8 +37,7 @@ public class CalorieTrack extends View{
       JLabel netLabel = new JLabel("Net Gain: ");
       
       //Create the fields accompanying them
-      JTextField goal = new JTextField();
-      goal.setColumns(8);
+      JTextField goal = new JTextField(8);
       JTextField hit = new JTextField();
       hit.setEditable(false);
       JTextField burned = new JTextField();

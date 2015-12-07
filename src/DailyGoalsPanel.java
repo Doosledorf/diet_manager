@@ -13,7 +13,7 @@ public class DailyGoalsPanel extends View{
    public void init(){
       
       //Layout
-      setLayout(new FlowLayout());
+      setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
       
       //Instantiate the main panels
       CalorieTrack calPanel = new CalorieTrack();
