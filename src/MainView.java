@@ -27,7 +27,7 @@ public class MainView extends View{
    
    public void init(){
       
-      mainFrame.setLayout(new BorderLayout());//BoxLayout(mainFrame.getContentPane(), BoxLayout.Y_AXIS));
+      mainFrame.setLayout(new BoxLayout(mainFrame.getContentPane(), BoxLayout.Y_AXIS));//BoxLayout(mainFrame.getContentPane(), BoxLayout.Y_AXIS));
       
       //Instantiate the menubar.
       MainMenuBar mainMenu = new MainMenuBar();
@@ -36,14 +36,16 @@ public class MainView extends View{
       //Instantiate the date picker
       DateAndWeightPanel datePick = new DateAndWeightPanel();
       
+      //Instantiate the stats
+      DailyGoalsPanel dayGoals = new DailyGoalsPanel();
+      
       //Instantiate the log.
       ListLogPanel listLog = new ListLogPanel();
-      
-      //Config those that need it.
-      
+        
       //Pull em together.
-      mainFrame.add(datePick, BorderLayout.NORTH);
-      mainFrame.add(listLog, BorderLayout.CENTER);  
+      mainFrame.add(datePick);
+      mainFrame.add(dayGoals);
+      mainFrame.add(listLog);  
    }
       
    public static void main (String[]args){
