@@ -3,6 +3,7 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 
+//@author Roberto Ortiz
 public class MacroTrack extends View{
 
    private JTextField fats, fatsPct, protein, proteinPct, carbs, carbsPct;
@@ -75,4 +76,20 @@ public class MacroTrack extends View{
       //Add to main panel
       add(statsPanel);
    }
+   
+   //ACCESSORS
+   public JTextField getFats(){ return fats; }
+   public JTextField getFatsPct(){ return fatsPct; }
+   public JTextField getProtein(){ return protein; }
+   public JTextField getProteinPct(){ return proteinPct; }
+   public JTextField getCarbs(){ return carbs; }
+   public JTextField getCarbsPct(){ return carbsPct; }
+   
+   //MUTATORS
+   public void setFats(double newFats){ fats.setText(String.valueOf(newFats)); }
+   public void setFatsPct(double newFatsPct){ fatsPct.setText(String.valueOf(newFatsPct)); }
+   public void setProtein(double newProtein){ protein.setText(String.valueOf(newProtein)); }
+   public void setProteinPct(double newProteinPct){ proteinPct.setText(String.valueOf(newProteinPct)); }
+   public void setCarbs(double newCarbs){ carbs.setText(String.valueOf(newCarbs)); }
+   public void setCarbsPct(double newCarbsPct){ carbsPct.setText(String.valueOf(newCarbsPct)); }
 }

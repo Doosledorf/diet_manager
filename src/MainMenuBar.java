@@ -4,6 +4,7 @@ import java.util.*;
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 
+//@author Roberto Ortiz
 public class MainMenuBar extends JMenuBar{
 
    public MainMenuBar(){
@@ -33,4 +34,6 @@ public class MainMenuBar extends JMenuBar{
       options.addSeparator();
       options.add(export);
    }
+   
+   //MAYBE ACCESSORS?
 }

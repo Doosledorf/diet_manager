@@ -4,11 +4,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Calendar;
 
+//@author Roberto Ortiz
 //huehue it rhymes
 public class DateAndWeightPanel extends View{
    
-   JButton forward, backward;
    JSpinner date;
+   JTextField weight;
    
    public DateAndWeightPanel(){
    
@@ -56,7 +57,7 @@ public class DateAndWeightPanel extends View{
       
       //now for the weight
       JLabel weightLabel = new JLabel("Weight: ");
-      JTextField weight = new JTextField();
+      weight = new JTextField();
       
       //alter the length of the textfield
       weight.setColumns(6);
@@ -65,4 +66,12 @@ public class DateAndWeightPanel extends View{
       add(weightLabel);
       add(weight);
    }
+   
+   //ACCESORS 
+   public JTextField getWeight(){ return weight; }
+   public JSpinner getDate(){ return date; }
+   
+   //MUTATORS
+   public void setWeight(double newWeight){ weight.setText(String.valueOf(newWeight)); }
+   //<something for date>
 }

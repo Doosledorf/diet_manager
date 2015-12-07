@@ -3,7 +3,10 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 
+//@author Roberto Ortiz
 public class CalorieTrack extends View{
+
+   JTextField goal, hit, burned, net;
 
    public CalorieTrack(){
    
@@ -37,12 +40,12 @@ public class CalorieTrack extends View{
       JLabel netLabel = new JLabel("Net Gain: ");
       
       //Create the fields accompanying them
-      JTextField goal = new JTextField(8);
-      JTextField hit = new JTextField();
+      goal = new JTextField(8);
+      hit = new JTextField();
       hit.setEditable(false);
-      JTextField burned = new JTextField();
+      burned = new JTextField();
       burned.setEditable(false);
-      JTextField net = new JTextField();
+      net = new JTextField();
       net.setEditable(false);
       
       //Add em
@@ -58,4 +61,17 @@ public class CalorieTrack extends View{
       //Add statsPanel on to the main panel
       add(statsPanel);
    }
+   
+   //ACCESSORS
+   public JTextField getGoal(){ return goal; }
+   public JTextField getHit(){ return hit; }
+   public JTextField getBurned(){ return burned; }
+   public JTextField getNet(){ return net; }
+   
+   //MUTATORS
+   public void setGoal(double newGoal){ goal.setText(String.valueOf(newGoal)); }
+   public void setHit(double newHit){ hit.setText(String.valueOf(newHit)); }
+   public void setBurned(double newBurned){ burned.setText(String.valueOf(newBurned)); }
+   public void setNet(double newNet){ net.setText(String.valueOf(newNet)); }
+   
 }

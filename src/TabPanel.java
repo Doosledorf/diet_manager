@@ -3,6 +3,7 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 
+//@author Roberto Ortiz
 public class TabPanel extends View{
    
    private String iconPath;

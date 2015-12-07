@@ -3,8 +3,10 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 
+//@author Roberto Ortiz
 public class ListLogPanel extends View{
 
+   private TabPanel foodLogPanel, exerciseLogPanel;
    private MainController controller;
    
    public ListLogPanel (/*MainController con*/){
@@ -30,4 +32,8 @@ public class ListLogPanel extends View{
       //Add
       add(tabbedPane);
    }
+   
+   //ACCESSORS
+   public TabPanel getFoodLogPanel(){ return foodLogPanel; }
+   public TabPanel getExerciseLogPanel(){ return exerciseLogPanel; }
 }

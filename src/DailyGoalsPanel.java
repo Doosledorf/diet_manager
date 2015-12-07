@@ -3,7 +3,11 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 
+//@author Roberto Ortiz
 public class DailyGoalsPanel extends View{
+   
+   CalorieTrack calPanel;
+   MacroTrack macroPanel;
    
    public DailyGoalsPanel(){
    
@@ -16,11 +20,15 @@ public class DailyGoalsPanel extends View{
       setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
       
       //Instantiate the main panels
-      CalorieTrack calPanel = new CalorieTrack();
-      MacroTrack macroPanel = new MacroTrack();
+      calPanel = new CalorieTrack();
+      macroPanel = new MacroTrack();
       
       //Add
       add(calPanel);
       add(macroPanel);
    }
+   
+   //ACCESSORS FOR PANELS
+   public CalorieTrack getCalPanel(){ return calPanel; }
+   public MacroTrack getMacroPanel(){ return macroPanel; }
 }
