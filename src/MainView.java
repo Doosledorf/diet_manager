@@ -34,7 +34,7 @@ public class MainView extends View{
       mainFrame.setJMenuBar(mainMenu);
       
       //Instantiate the date picker
-      DatePanel datePick = new DatePanel();
+      DateAndWeightPanel datePick = new DateAndWeightPanel();
       
       //Instantiate the log.
       ListLogPanel listLog = new ListLogPanel();
