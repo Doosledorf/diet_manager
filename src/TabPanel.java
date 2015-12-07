@@ -6,14 +6,13 @@ import java.awt.event.*;
 public class TabPanel extends View{
    
    private String iconPath;
+   private Object[] colNames;
    private JButton logAdd, logDelete;
    private JTable logTable;
    
    //constructs
    public TabPanel(String whichType){
-      
-      Object[] colNames;
-      
+            
       //Simple switch for icon paths
       switch(whichType){
          
@@ -36,7 +35,7 @@ public class TabPanel extends View{
       base.setLayout(new BoxLayout(base, BoxLayout.Y_AXIS));
       
       //Create a Table and add to the panel
-      logTable = new JTable(new DefaultTableModel(tableColNames));
+      logTable = new JTable(/*new DefaultTableModel(tableColNames)*/);
       base.add(logTable);
       
       //Config log tab panel's button panel

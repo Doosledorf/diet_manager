@@ -29,7 +29,11 @@ public class MainView extends View{
       
       mainFrame.setLayout(new BorderLayout());
       
-      //Instantiate the parts.
+      //Instantiate the menubar.
+      MainMenuBar mainMenu = new MainMenuBar();
+      mainFrame.setJMenuBar(mainMenu);
+      
+      //Instantiate the log.
       ListLogPanel listLog = new ListLogPanel();
       
       //Config those that need it.
