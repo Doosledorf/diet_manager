@@ -46,6 +46,25 @@ public abstract class Controller implements PropertyChangeListener
       }
    }
 
+   protected Object getModelProperty(String propertyName)
+   {
+   	for (Model model: listModels)
+   	{
+   		try
+   		{
+   			Method method = model.getClass().getMethod("get" + propertyName);
+
+   			return method.invoke(model);
+   		}
+   		catch (Exception e)
+   		{
+   			e.getMessage();
+   		}
+   	}
+
+   	return null;
+   }
+
    protected void setModelProperty(String propertyName, Object newValue)
    {
    	for (Model model : listModels)

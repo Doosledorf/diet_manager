@@ -11,13 +11,7 @@ public class DateAndWeightPanel extends View{
    JSpinner date;
    JTextField weight;
    
-   public DateAndWeightPanel(){
-   
-      init();
-   }
-   
-   public void init(){
-      
+   public DateAndWeightPanel(MainController controller){
       //Set layout
       setLayout(new FlowLayout(FlowLayout.CENTER));
       

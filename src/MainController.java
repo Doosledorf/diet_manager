@@ -6,6 +6,13 @@ public class MainController extends Controller
    public static final String FRAME_HEIGHT = "Height";
    public static final String DAY_LOG_DATA = "DayLogData";
    public static final String FOOD_LOG_DATA = "FoodLogData";
+   public static final String EXPORT = "Export";
+
+   public void export()
+   {
+      // Calls the method getExport
+      String tmp = (String) getModelProperty(EXPORT);
+   }
 
    public void changeFrameWidth(int newFrameWidth)
    {

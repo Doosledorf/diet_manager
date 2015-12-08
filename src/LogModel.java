@@ -10,6 +10,8 @@ public class LogModel extends Model
 
    public void defaultSettings()
    {
+      initializeExport();
+
       ParseFile dayCsv = new ParseFile("log.csv");
       DayStore dayStore = new DayStore(dayCsv.splitLists);
       dayStore.createMap();
@@ -21,6 +23,12 @@ public class LogModel extends Model
       setFoodLogData(foodStore.getLog());
    }
 
+   // Main Functions
+   public void getExport()
+   {
+      System.out.println("Get Export");
+   }
+
    // Accessors
    public Map<String, Day> getDayLogData()
    {
@@ -30,6 +38,12 @@ public class LogModel extends Model
    public Map<String, Food> getFoodLogData()
    {
       return foodLogData;
+   }
+
+   // Method Initializers
+   public void initializeExport()
+   {
+      firePropertyChange(MainController.EXPORT, null, null);
    }
 
    // Mutators

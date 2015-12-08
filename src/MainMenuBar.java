@@ -5,15 +5,10 @@ import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 
 //@author Roberto Ortiz
-public class MainMenuBar extends JMenuBar{
-
-   public MainMenuBar(){
-      
-      init();
-   }
-   
-   public void init(){
-      
+public class MainMenuBar extends JMenuBar
+{
+   public MainMenuBar(MainController controller)
+   {
       //Create out sole option for now
       JMenu options = new JMenu("Options");
       
@@ -24,8 +19,14 @@ public class MainMenuBar extends JMenuBar{
       JMenuItem save = new JMenuItem("Save");
       JMenuItem addFoodToDB = new JMenuItem("Enter food information");
       JMenuItem addExerciseToDB = new JMenuItem("Enter exercise information");
-      JMenuItem export = new JMenuItem("Export");
-      
+      JMenuItem export = new JMenuItem(new AbstractAction("Export")
+      {
+          public void actionPerformed(ActionEvent ae)
+      	{
+      		controller.export();
+          }
+      });
+
       //Pull it together
       options.add(save);
       options.addSeparator();

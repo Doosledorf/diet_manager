@@ -7,12 +7,8 @@ import java.awt.event.*;
 public class ListLogPanel extends View{
 
    private TabPanel foodLogPanel, exerciseLogPanel;
-   private MainController controller;
    
-   public ListLogPanel (/*MainController con*/){
-      
-      // this.controller = con;
-      
+   public ListLogPanel (MainController controller){
       //Set layout
       this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
       

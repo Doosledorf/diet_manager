@@ -13,13 +13,12 @@ public class Application
       LogModel logModel = new LogModel();
 
       MainController controller = new MainController();
-      MainView mainView = new MainView(/*controller*/);
-      //FoodListView foodListView = new FoodListView(controller);
+      MainView mainView = new MainView(controller);
 
       controller.addModel(mainModel);
       controller.addModel(logModel);
 
-      //controller.addView(mainView);
+      controller.addView(mainView);
 
       mainModel.defaultSettings();
       logModel.defaultSettings();

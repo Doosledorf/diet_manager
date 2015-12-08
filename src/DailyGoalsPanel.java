@@ -9,13 +9,7 @@ public class DailyGoalsPanel extends View{
    CalorieTrack calPanel;
    MacroTrack macroPanel;
    
-   public DailyGoalsPanel(){
-   
-      init();
-   }
-   
-   public void init(){
-      
+   public DailyGoalsPanel(MainController controller){
       //Layout
       setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
       
