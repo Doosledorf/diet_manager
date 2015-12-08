@@ -4,7 +4,6 @@ import java.util.*;
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 
-//@author Roberto Ortiz
 public class MainMenuBar extends JMenuBar
 {
    public MainMenuBar(MainController controller)

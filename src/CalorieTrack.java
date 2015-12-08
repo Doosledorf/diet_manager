@@ -3,18 +3,12 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 
-//@author Roberto Ortiz
-public class CalorieTrack extends View{
-
+public class CalorieTrack extends View
+{
    JTextField goal, hit, burned, net;
 
-   public CalorieTrack(){
-   
-      init();
-   }
-   
-   public void init(){
-   
+   public CalorieTrack(MainController controller)
+   {
       //Main Layout
       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
       

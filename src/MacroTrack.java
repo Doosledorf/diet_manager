@@ -3,18 +3,12 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 
-//@author Roberto Ortiz
-public class MacroTrack extends View{
-
+public class MacroTrack extends View
+{
    private JTextField fats, fatsPct, protein, proteinPct, carbs, carbsPct;
 
-   public MacroTrack(){
-      
-      init();
-   }
-   
-   public void init(){
-   
+   public MacroTrack(MainController controller)
+   {
       //Main Layout
       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
       
@@ -76,7 +70,7 @@ public class MacroTrack extends View{
       //Add to main panel
       add(statsPanel);
    }
-   
+
    //ACCESSORS
    public JTextField getFats(){ return fats; }
    public JTextField getFatsPct(){ return fatsPct; }

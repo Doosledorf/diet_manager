@@ -4,17 +4,16 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Calendar;
 
-//@author Roberto Ortiz
-//huehue it rhymes
-public class DateAndWeightPanel extends View{
-   
+public class DateAndWeightPanel extends View
+{
    JSpinner date;
    JTextField weight;
    
-   public DateAndWeightPanel(MainController controller){
+   public DateAndWeightPanel(MainController controller)
+   {
       //Set layout
       setLayout(new FlowLayout(FlowLayout.CENTER));
-      
+
       //Need a Calendar to work with dates
       Calendar calendar = new GregorianCalendar();
       

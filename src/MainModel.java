@@ -5,8 +5,8 @@ public class MainModel extends Model
 
    public void defaultSettings()
    {
-      setFrameWidth(500);
-      setFrameHeight(250);
+      setFrameWidth(600);
+      setFrameHeight(350);
    }
 
    // Accessors

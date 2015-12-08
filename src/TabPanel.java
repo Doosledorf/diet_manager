@@ -2,54 +2,61 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.table.*;
 
 //@author Roberto Ortiz
 public class TabPanel extends View{
    
    private String iconPath;
-   private String[] colNames;
+   private String type;
+   private String[] tableColNames;
+   private Object[][] tableColVals = {};
    private JButton logAdd, logDelete;
    private JTable logTable;
    private JComboBox searchExisting;
    private JPanel dataPanelHolder;
-   
+   private MainController controller;
+
    //constructs
-   public TabPanel(String whichType){
-            
+   public TabPanel(MainController controller, JTabbedPane tabbedPane, JFrame mainFrame, String type){
+      this.controller = controller;
+      this.controller.addView(this);
+      this.type = type;
+
+      // Table Model
+      DefaultTableModel model = new DefaultTableModel();
+
       //Simple switch for icon paths
-      switch(whichType){
-         
-         case "Food": iconPath = "/assets/images/food.png";
-                      colNames = new String[]{" ", "Name", "Unit Amount", "Calories", "Fat", "Protein", "Carbs"}; 
-                      break;
-                      
-         case "Exercise": iconPath = "/assets/images/stopwatch.png";
-                          colNames = new String[]{" ", "Name", "Time Spent (in minutes)", "Calories Burnt"};
-                          break;
+      switch(type)
+      {
+         case "Food":
+            iconPath = "/assets/images/food.png";
+            model.addColumn("Name");
+            model.addColumn("Unit Amount");
+            model.addColumn("Calories");
+            model.addColumn("Fat");
+            model.addColumn("Protein");
+            model.addColumn("Carbs");
+            break;
+         case "Exercise":
+            iconPath = "/assets/images/stopwatch.png";
+            model.addColumn("Name");
+            model.addColumn("Time Spent (in minutes)");
+            model.addColumn("Calories Burnt");
+            break;
       }
-      //render
-      init(whichType, this, colNames);
-   }
-   
-   //renders
-   public void init(String type, JPanel base, String[] tableColNames){
-        
-      //Config log tab panel
-      base.setLayout(new BoxLayout(base, BoxLayout.Y_AXIS));
-      
-      //Create a panel and add to the panel
-      dataPanelHolder = new JPanel();
-      base.add(dataPanelHolder);
-      
-      //place column panels in
-      JPanel headerPanel = new JPanel();
-      headerPanel.setLayout(new GridLayout(1, tableColNames.length));
-      for(String colName : colNames){
-         JLabel headerLabel = new JLabel(colName, JLabel.CENTER);
-         headerPanel.add(headerLabel);
-      }
-      dataPanelHolder.add(headerPanel);
-            
+
+      //Table + ScrollPane
+      logTable = new JTable(model);
+      logTable.setPreferredScrollableViewportSize(logTable.getPreferredSize());
+      logTable.setFillsViewportHeight(true);
+      JTableHeader header = logTable.getTableHeader();
+      add(header);
+      add(logTable);
+
       //Config log tab panel's button panel
       JPanel logButtonPanel = new JPanel();
       logButtonPanel.setLayout(new BoxLayout(logButtonPanel, BoxLayout.X_AXIS));
@@ -59,22 +66,51 @@ public class TabPanel extends View{
       searchExisting = new JComboBox();
       logButtonPanel.add(comboBoxLabel);
       logButtonPanel.add(searchExisting);
-      
+
       //Create + Add buttons to the above
       logAdd = new JButton("Add " + type);
-      logDelete = new JButton("Delete " + type);
+      logAdd.addActionListener(new ActionListener()
+      {
+      	public void actionPerformed(ActionEvent e)
+      	{
+            controller.addLogRow(type, String.valueOf(searchExisting.getSelectedItem()), model);
+            mainFrame.pack();
+      	}
+      });
+      logDelete = new JButton("Delete Selected Row");
+      logDelete.addActionListener(new ActionListener()
+      {
+      	public void actionPerformed(ActionEvent e)
+      	{
+            int[] rows = logTable.getSelectedRows();
+
+            for (int i = 0; i < rows.length; i++)
+            {
+               model.removeRow(rows[i] - i);
+            }
+      	}
+      });
       logButtonPanel.add(logAdd);
       logButtonPanel.add(logDelete);
-      
+
       //Add buttons to panel
-      base.add(logButtonPanel);
+      add(logButtonPanel);
    }
-   
+
+   public void modelPropertyChange(final PropertyChangeEvent pce)
+   {
+   	if (pce.getPropertyName().equals(controller.FOOD_LOG_DATA))
+   	{
+         controller.populateSearchBox(getType(), getBox());
+   	}
+   }
+
    //Accessors
    public String getIconPath(){ return iconPath; }
    public JButton getLogAdd(){ return logAdd; }
    public JButton getLogDelete(){ return logDelete; }
    public JTable getLogTable(){ return logTable; }
    public JComboBox getBox(){ return searchExisting; }
+   public String getType(){ return type; }
    public JPanel getDataHolder(){ return dataPanelHolder; }
 }

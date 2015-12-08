@@ -1,4 +1,8 @@
 import java.util.List;
+import java.util.Map;
+import javax.swing.*;
+import java.awt.*;
+import javax.swing.table.*;
 
 public class MainController extends Controller
 {
@@ -12,6 +16,49 @@ public class MainController extends Controller
    {
       // Calls the method getExport
       String tmp = (String) getModelProperty(EXPORT);
+   }
+
+   public void populateSearchBox(String type, JComboBox comboBox)
+   {
+      switch(type)
+      {
+         case "Food":
+      		Map<String, Food> data = (Map<String, Food>) getModelProperty(FOOD_LOG_DATA);
+
+      		for (String food : data.keySet())
+      		{
+      			Food foodObj = data.get(food);
+   
+               comboBox.addItem(foodObj.getName());
+      		}
+            break;
+         case "Exercise":
+            comboBox.addItem("exercise");
+            break;
+      }
+   }
+
+   public void addLogRow(String type, String name, DefaultTableModel model)
+   {
+      switch(type)
+      {
+         case "Food":
+      		Map<String, Food> data = (Map<String, Food>) getModelProperty(FOOD_LOG_DATA);
+
+      		for (String food : data.keySet())
+      		{
+      			Food foodObj = data.get(food);
+
+               if (foodObj.getName() == name)
+               {
+                  model.addRow(new Object[] {foodObj.getName(), "0", foodObj.getCal(), foodObj.getFat(), foodObj.getProtein(), foodObj.getCarbs()});
+               }
+      		}
+            break;
+         case "Exercise":
+            model.addRow(new Object[] {"none", "none", "none"});
+            break;
+      }
    }
 
    public void changeFrameWidth(int newFrameWidth)
