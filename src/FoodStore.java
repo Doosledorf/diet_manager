@@ -1,10 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
@@ -15,9 +8,9 @@ import java.util.HashMap;
  */
 public class FoodStore {
 
-List<List<String>> csv;
-String foodName;
-String recName;
+private List<List<String>> csv;
+private String foodName;
+private String recName;
 
 private Map<String,Food> foodMap;
     
@@ -45,7 +38,7 @@ private Map<String,Food> foodMap;
         }
         
     }
-    
+    //
     public void checkFlag(List<String> item){
         
         if (item.get(0).equals("b")){
@@ -61,19 +54,19 @@ private Map<String,Food> foodMap;
             Double protein = Double.parseDouble(proteinString);
             
             Food aFood = new Food(foodName, calories, fat,
-                carb, protein, false);
+                carb, protein);
             
             foodMap.put(foodName, aFood);
         }
         
         else if (item.get(0).equals("r")){
             
-            String recName = item.get(1);
+            recName = item.get(1);
             
             Double ingCount;
             String ingName, ingCountString;
     
-            Food recipe = new Food(recName, true);
+            Recipe recipe = new Recipe(recName);
             
             for(int i=2;i<item.size();i+=2){
                 
@@ -82,11 +75,8 @@ private Map<String,Food> foodMap;
                 ingCount = Double.parseDouble(ingCountString);
                 
                 Food ingredient = foodMap.get(ingName);
-                recipe.setCal((recipe.getCal() + ingredient.getCal())*ingCount);
-                recipe.setFat((recipe.getFat() + ingredient.getFat())*ingCount);
-                recipe.setCarbs((recipe.getCarbs() + ingredient.getCarbs())*ingCount);
-                recipe.setProtein((recipe.getProtein() + ingredient.getProtein())*ingCount);
-                recipe.addIngredient(ingName, ingCount);
+                
+                recipe.addIngredient(ingredient, ingCount);
             }
             
             foodMap.put(recName,recipe);
@@ -95,16 +85,27 @@ private Map<String,Food> foodMap;
     
     }
     
+    public void addRecipe(Recipe aRecipe){
+
+        foodMap.put(aRecipe.getName(),aRecipe);
+        
+    }
+    
+    public void addFood(Food aFood){
+        
+        foodMap.put(aFood.getName(), aFood);
+        
+        
+    }
+    
     public Map<String,Food> getLog(){
         
         return foodMap;
         
     }
     public void save(){
-       
-        File file = new File("foods.csv");
         
-        CsvFoodWriter csvfw = new CsvFoodWriter(file,foodMap);
+        CsvFoodWriter csvfw = new CsvFoodWriter(foodMap);
         csvfw.save();
         
         }

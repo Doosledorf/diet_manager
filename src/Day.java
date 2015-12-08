@@ -7,13 +7,15 @@ public class Day{
    
    //Attributes
    double weight, calorieGoal;
-   Map<String, Double> foodEaten; //Food, Count 
+   Map<Food, Double> foodEaten; //Food, Count 
+   Map<Exercise, Double> exercisesRecorded;
    
    //Default Constructor. No previous date.
    public Day(){
       
       weight = 150.0;
       calorieGoal = 2000.0;
+      exercisesRecorded = new HashMap<>();
       foodEaten = new HashMap<>();
    }
    
@@ -22,16 +24,6 @@ public class Day{
    //Accessors. Might be a little too toolboxy...
    public double getWeight(){ return weight; }
    public double getGoal(){ return calorieGoal; }
-   
-   //Gets entire list of food eaten that day
-   public List<String> getFoodList(){
-   
-      List<String> foodList = new ArrayList<>(); 
-      for(String food : foodEaten.keySet()){
-         foodList.add(food);
-      }
-      return foodList;
-   }
    
    //Gets count of that food eaten for the day 
    public double getFoodCount(String food){ 
@@ -48,9 +40,13 @@ public class Day{
       else return new String[]{};
    }
    
+   public Map<Food, Double> getFoods(){return foodEaten;}
+   public Map<Exercise, Double> getExercises(){return exercisesRecorded;}
+   
    //Mutators
    public void setWeight(double newWeight){ weight = newWeight; }
    public void setGoal(double newGoal){ calorieGoal = newGoal; }
-   public void addFood(String newFood, double foodCount){ foodEaten.put(newFood, foodCount); }
+   public void addFood(Food newFood, double foodCount){ foodEaten.put(newFood, foodCount); }
+   public void addExercise(Exercise newExercise, double burnedCalories){ exercisesRecorded.put(newExercise, burnedCalories); }
    
 }//End Day

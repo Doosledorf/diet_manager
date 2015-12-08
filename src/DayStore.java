@@ -6,7 +6,6 @@
 
 import java.io.File;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -20,7 +19,7 @@ public class DayStore {
 private List<List<String>> csv;
 private String date = "";
 private Map<String,Day> dayMap;
-    
+
 public DayStore(List<List<String>> csv){
 
     this.csv = csv;
@@ -45,9 +44,8 @@ public DayStore(List<List<String>> csv){
                 checkFlag(aDay,item);
                 dayMap.put(date,aDay);
             }
-        
     }
-
+    
     public void createMap(){
         
         for(List<String> item : csv){
@@ -90,7 +88,9 @@ public DayStore(List<List<String>> csv){
         if (item.get(3).equals("f")){
             
             int count = Integer.parseInt(item.get(5));
-            thisDay.addFood(item.get(4),count);
+            String foodName = item.get(4);
+            Food aFood = new Food(foodName);
+            thisDay.addFood(aFood,count);
             
         }
     
@@ -107,7 +107,7 @@ public DayStore(List<List<String>> csv){
         File file = new File("log.csv");
         
         CsvLogWriter csvlw = new CsvLogWriter(file,dayMap);
-        csvlw.save();
+        csvlw.save(); 
         
     }
        
