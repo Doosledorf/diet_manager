@@ -1,8 +1,10 @@
 public class MainModel extends Model
 {
+   // Data Storage
    private Integer frameWidth;
    private Integer frameHeight;
 
+   // Default Settings
    public void defaultSettings()
    {
       setFrameWidth(600);

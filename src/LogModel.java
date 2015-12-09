@@ -3,11 +3,13 @@ import java.util.Map;
 
 public class LogModel extends Model
 {
+   // Data Storage
    private Map<String, Day> dayLogData;
    private Map<String, Food> foodLogData;
    private Map<String, Exercise> exerciseLogData;
    private static final String[] CSV_LIST = {"log.csv", "foods.csv", "exercise.csv"};
 
+   // Default Settings
    public void defaultSettings()
    {
       initializeExport();
